@@ -3,6 +3,7 @@ import logging
 from fastapi import FastAPI
 
 from app.api.incident_router import router as incident_router
+from app.api.document_router import router as document_router
 
 logging.basicConfig(
     level=logging.INFO,
@@ -16,6 +17,7 @@ app = FastAPI (
 )
 
 app.include_router(incident_router)
+app.include_router(document_router)
 
 @app.get("/")
 def health_check():
