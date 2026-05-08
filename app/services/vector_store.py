@@ -29,6 +29,17 @@ class VectorStore:
     
     def get_all(self):
         return self.collection.get()
+    
+    def search_similar_chunks(
+        self,
+        query_embedding: List[float],
+        top_k: int,
+    ):
+        return self.collection.query(
+            query_embeddings=[query_embedding],
+            n_results=top_k,
+            include=["documents", "metadatas", "distances"],
+        )
 
     # chunk Chroma에 저장 
     def add_incident_chunks(
@@ -74,3 +85,4 @@ class VectorStore:
         )
 
         return len(chunks)
+    
